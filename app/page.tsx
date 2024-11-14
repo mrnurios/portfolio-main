@@ -1,101 +1,141 @@
-import Image from "next/image";
+import Hero from "../components/hero";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    return (
+        <>
+            <Hero />
+            <main className="font-[family-name:var(--font-geist-sans)] relative  w-full h-full flex flex-col text-white md:py-20 md:gap-y-10 overflow-clip">
+                <section
+                    id="contactme"
+                    className="relative h-full w-full p-10 md:px-20 md:p-10"
+                >
+                    <div className="max-w-7xl mx-auto flex flex-col md:flex-row h-full w-full gap-5 md:gap-10">
+                        <div className="border-8 border-neutral-800 bg-neutral-800 rounded-lg h-72 md:h-[500px] w-72 md:w-96 overflow-clip mx-auto drop-shadow-xl group">
+                            <div className="size-full rounded-lg bg-[url('/img/8.jpg')] bg-center bg-cover bg-no-repeat overflow-clip">
+                                <div className="relative rounded-lg size-full grid place-items-center">
+                                    <div className="absolute rounded-full bg-amber-400 transition-all ease-in-out duration-500 size-[700px] scale-0 group-hover:scale-100"></div>
+                                    <div
+                                        className="absolute rounded-full bg-[url('/img/dp.jpg')] bg-red-400 transition-all duration-500 delay-200 scale-50 md:scale-100
+                                        size-0 group-hover:size-[700px]
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+                                        bg-no-repeat
+                                        bg-[length:600px_600px]
+                                        md:bg-[length:500px_500px]
+                                        bg-center"
+                                    ></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="flex flex-col justify-center w-full md:w-3/5 self-stretch relative gap-y-7">
+                            <div>
+                                <h1 className="text-2xl font-black">
+                                    <span className="decoration-amber-400 underline underline-offset-8">
+                                        Abo
+                                    </span>
+                                    ut Me
+                                </h1>
+                            </div>
+                            <p className="font-thin text-justify leading-8">
+                                My name is&nbsp;
+                                <span className="font-semibold">
+                                    Clyb Abraham Bongcayao.&nbsp;
+                                </span>
+                                I'm a Freelance TALL Stack Developer based in
+                                Philippines. A graduate with a Bachelor of
+                                Science in Information Technology from Mindanao
+                                State University - Iligan Institute of
+                                Technology. I specialize in web developing,
+                                programming, hardware and software
+                                troubleshooting and enjoy solving technical
+                                challenges.
+                            </p>
+                            <div className="overflow-clip grid md:grid-flow-col md:grid-rows-2 md:grid-cols-2 items-center size-full h-fit gap-y-4 border-2 rounded border-amber-400 p-5 text-sm tracking-wide">
+                                <h1
+                                    data-aos-anchor-placement="bottom-bottom"
+                                    data-aos="fade-right"
+                                    data-aos-delay="100"
+                                    className=""
+                                >
+                                    <span className="font-semibold">Name:</span>
+                                    Clyb Abraham Bongcayao
+                                </h1>
+                                <h1
+                                    data-aos-anchor-placement="bottom-bottom"
+                                    data-aos="fade-right"
+                                    data-aos-delay="0"
+                                    className=""
+                                >
+                                    <span className="font-semibold">
+                                        Phone:
+                                    </span>
+                                    +639512577048
+                                </h1>
+                                <h1
+                                    data-aos-anchor-placement="bottom-bottom"
+                                    data-aos="fade-right"
+                                    data-aos-delay="300"
+                                    className=""
+                                >
+                                    <span className="font-semibold">
+                                        Email:
+                                    </span>
+                                    cabongcayao@gmail.com
+                                </h1>
+
+                                <h1
+                                    data-aos-anchor-placement="bottom-bottom"
+                                    data-aos="fade-right"
+                                    data-aos-delay="100"
+                                    className=""
+                                >
+                                    <span className="font-semibold">
+                                        Address:
+                                    </span>
+                                    Lugait, Misamis Oriental
+                                </h1>
+                            </div>
+                            <div className="relative group size-fit rounded-lg px-4 py-3 bg-amber-400  transition-all duration-300 hover:scale-110">
+                                <span className="absolute transition-opacity duration-500 inset-0 size-full rounded-lg bg-gradient-to-r from-pink-500 to-indigo-500 opacity-0 group-hover:opacity-100"></span>
+                                <a
+                                    data-aos="fade-left"
+                                    data-aos-anchor-placement="center-bottom"
+                                    href="docs/clyb_resume.pdf"
+                                    download="clyb_resume.pdf"
+                                    className="relative font-semibold text-sm"
+                                >
+                                    DOWNLOAD RESUME
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section className="relative h-full w-full p-10 md:px-20 md:p-10">
+                    <div className="max-w-7xl mx-auto flex flex-col md:flex-row h-full w-full gap-5 md:gap-10">
+                        <div className="group flex space-x-4">
+                            {/* Div 1 */}
+                            <div className="relative w-32 h-32 bg-gray-300 rounded-lg group-hover:blur-md transition-all duration-300 hover:!blur-none hover:scale-110">
+                                <span className="relative z-10 text-white font-semibold flex items-center justify-center h-full">
+                                    Div 1
+                                </span>
+                            </div>
+
+                            {/* Div 2 */}
+                            <div className="relative w-32 h-32 bg-gray-300 rounded-lg group-hover:blur-md transition-all duration-300 hover:!blur-none hover:scale-110">
+                                <span className="relative z-10 text-white font-semibold flex items-center justify-center h-full">
+                                    Div 2
+                                </span>
+                            </div>
+
+                            {/* Div 3 */}
+                            <div className="relative w-32 h-32 bg-gray-300 rounded-lg group-hover:blur-md transition-all duration-300 hover:!blur-none hover:scale-110">
+                                <span className="relative z-10 text-white font-semibold flex items-center justify-center h-full">
+                                    Div 3
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </>
+    );
 }
