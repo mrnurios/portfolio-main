@@ -8,9 +8,20 @@ export default function Home() {
 
     useEffect(() => {
         const options = {
-            strings: ["web developer.", "photo editor.", "programmer."],
-            typeSpeed: 100, // Typing speed in milliseconds
-            backSpeed: 50, // Backspacing speed
+            strings: [
+                "web developer.",
+                "programmer.",
+                "front-end developer.",
+                "data encoder.",
+                "data analyst.",
+                "photo editor.",
+                "freelancer.",
+                "tech enthusiast.",
+                "graphic designer.",
+                "creative problem solver.",
+            ],
+            typeSpeed: 35, // Typing speed in milliseconds
+            backSpeed: 30, // Backspacing speed
             backDelay: 1000, // Delay before backspacing
             startDelay: 500, // Delay before starting to type
             loop: true, // Loop the typing effect
@@ -62,7 +73,7 @@ export default function Home() {
                         </p>
                         <div className="grid grid-cols-2 gap-x-5 text-center">
                             <a
-                                href="#"
+                                href="#projects"
                                 className="transition-all duration-500 hover:bg-amber-400 hover:text-white rounded-lg ring-1 ring-amber-400 text-amber-400 w-full px-5 py-2 ring-inset"
                             >
                                 PROJECTS
