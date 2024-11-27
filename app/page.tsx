@@ -21,6 +21,16 @@ const useSmoothScroll = () => {
 };
 
 export default function Home() {
+    const [email, setEmail] = useState("");
+    const [subject, setSubject] = useState("");
+    const [message, setMessage] = useState("");
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        // Handle form submission logic here
+        alert("Form Submitted!");
+    };
+
     const [hoverStates, setHoverStates] = useState<boolean[]>([]);
     const sectionRef = useRef<HTMLDivElement | null>(null);
     const smoothScrollY = useSmoothScroll();
@@ -167,9 +177,9 @@ export default function Home() {
     return (
         <>
             <Hero />
-            <main className="relative font-[family-name:var(--font-geist-sans)] w-full h-full flex flex-col text-white md:py-20 md:gap-y-10 overflow-clip">
+            <main className="relative font-[family-name:var(--font-geist-sans)] w-full h-full flex flex-col text-white py-20 md:gap-y-10 overflow-clip">
                 <section
-                    id="contactme"
+                    id="aboutme"
                     className="relative h-full w-full p-10 md:px-20 md:p-10"
                 >
                     <div className="max-w-7xl mx-auto flex flex-col md:flex-row h-full w-full gap-5 md:gap-10">
@@ -392,8 +402,8 @@ export default function Home() {
                             })}
                         </div>
 
-                        <div className="md:absolute bottom-28 w-full grid grid-flow-col grid-cols-1 grid-rows-2 gap-4 md:gap-10">
-                            <div className="relative">
+                        <div className="md:absolute bottom-0 w-full flex flex-col gap-14 md:gap-24">
+                            <div className="relative w-full h-fit">
                                 <span
                                     className="absolute top-0 text-5xl md:text-8xl mx-auto font-black w-full text-nowrap text-outline"
                                     style={{
@@ -403,13 +413,15 @@ export default function Home() {
                                         willChange: "transform",
                                     }}
                                 >
-                                    MORE PROJECTS SOON MORE PROJECTS SOON MORE
-                                    PROJECTS SOON MORE PROJECTS SOON MORE
-                                    PROJECTS SOON MORE PROJECTS SOON MORE
-                                    PROJECTS SOON MORE PROJECTS SOON MORE
-                                    PROJECTS SOON MORE PROJECTS SOON MORE
-                                    PROJECTS SOON MORE PROJECTS SOON MORE
-                                    PROJECTS SOON MORE PROJECTS SOON
+                                    HIRE ME NOW HIRE ME NOW HIRE ME NOW HIRE ME
+                                    NOW HIRE ME NOW HIRE ME NOW HIRE ME NOW HIRE
+                                    ME NOW HIRE ME NOW HIRE ME NOW HIRE ME NOW
+                                    HIRE ME NOW HIRE ME NOW HIRE ME NOW HIRE ME
+                                    NOW HIRE ME NOW HIRE ME NOW HIRE ME NOW HIRE
+                                    ME NOW HIRE ME NOW HIRE ME NOW HIRE ME NOW
+                                    HIRE ME NOW HIRE ME NOW HIRE ME NOW HIRE ME
+                                    NOW HIRE ME NOW HIRE ME NOW HIRE ME NOW HIRE
+                                    ME NOW HIRE ME NOW HIRE ME NOW
                                 </span>
                                 <span
                                     className="absolute top-2 text-amber-400 text-5xl md:text-8xl mx-auto font-black w-full text-nowrap"
@@ -420,23 +432,104 @@ export default function Home() {
                                         willChange: "transform",
                                     }}
                                 >
-                                    MORE PROJECTS SOON MORE PROJECTS SOON MORE
-                                    PROJECTS SOON MORE PROJECTS SOON MORE
-                                    PROJECTS SOON MORE PROJECTS SOON MORE
-                                    PROJECTS SOON MORE PROJECTS SOON MORE
-                                    PROJECTS SOON MORE PROJECTS SOON MORE
-                                    PROJECTS SOON MORE PROJECTS SOON MORE
-                                    PROJECTS SOON MORE PROJECTS SOON MORE
-                                    PROJECTS SOON MORE PROJECTS SOON MORE
-                                    PROJECTS SOON MORE PROJECTS SOON MORE
-                                    PROJECTS SOON MORE PROJECTS SOON MORE
-                                    PROJECTS SOON
+                                    HIRE ME NOW HIRE ME NOW HIRE ME NOW HIRE ME
+                                    NOW HIRE ME NOW HIRE ME NOW HIRE ME NOW HIRE
+                                    ME NOW HIRE ME NOW HIRE ME NOW HIRE ME NOW
+                                    HIRE ME NOW HIRE ME NOW HIRE ME NOW HIRE ME
+                                    NOW HIRE ME NOW HIRE ME NOW HIRE ME NOW HIRE
+                                    ME NOW HIRE ME NOW HIRE ME NOW HIRE ME NOW
+                                    HIRE ME NOW HIRE ME NOW HIRE ME NOW HIRE ME
+                                    NOW HIRE ME NOW HIRE ME NOW HIRE ME NOW HIRE
+                                    ME NOW HIRE ME NOW HIRE ME NOW
                                 </span>
                             </div>
+                            <div className="text-amber-400 text-3xl md:text-6xl text-center mx-auto font-black">
+                                Hire Me!
+                            </div>
+                            <div
+                                id="contactme"
+                                className="max-w-lg w-full mx-auto p-4"
+                            >
+                                <form
+                                    onSubmit={handleSubmit}
+                                    className="space-y-4 "
+                                >
+                                    {/* Email Input */}
+                                    <div>
+                                        <label
+                                            htmlFor="email"
+                                            className="block text-sm font-medium "
+                                        >
+                                            Email
+                                        </label>
+                                        <input
+                                            type="email"
+                                            id="email"
+                                            name="email"
+                                            value={email}
+                                            onChange={(e) =>
+                                                setEmail(e.target.value)
+                                            }
+                                            className="text-black mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            placeholder="Enter your email"
+                                            required
+                                        />
+                                    </div>
 
-                            <span className="text-amber-400 text-3xl md:text-6xl text-center mx-auto font-black">
-                                More Projects Soon...
-                            </span>
+                                    {/* Subject Input */}
+                                    <div>
+                                        <label
+                                            htmlFor="subject"
+                                            className="block text-sm font-medium "
+                                        >
+                                            Subject
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="subject"
+                                            name="subject"
+                                            value={subject}
+                                            onChange={(e) =>
+                                                setSubject(e.target.value)
+                                            }
+                                            className="text-black mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            placeholder="Enter subject"
+                                            required
+                                        />
+                                    </div>
+
+                                    {/* Message Input */}
+                                    <div>
+                                        <label
+                                            htmlFor="message"
+                                            className="block text-sm font-medium "
+                                        >
+                                            Message
+                                        </label>
+                                        <textarea
+                                            id="message"
+                                            name="message"
+                                            value={message}
+                                            onChange={(e) =>
+                                                setMessage(e.target.value)
+                                            }
+                                            className="text-black mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            placeholder="Write your message"
+                                            required
+                                        />
+                                    </div>
+
+                                    {/* Submit Button */}
+                                    <div className="flex justify-center">
+                                        <button
+                                            type="submit"
+                                            className="bg-amber-400 text-white px-6 py-2 w-full rounded-md shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        >
+                                            Send
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </section>
