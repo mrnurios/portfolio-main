@@ -1,11 +1,18 @@
+//tailwind.config.ts
+
 import type { Config } from "tailwindcss";
 
-const config: Config = {
-    content: ["./app/**/*.{js,ts,jsx,tsx}"],
+export default {
+    content: [
+        "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+        "./components/**/*.{js,ts,jsx,tsx,mdx}",
+        "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    ],
     theme: {
         extend: {
             colors: {
-                // Add your custom colors here
+                background: "var(--background)",
+                foreground: "var(--foreground)",
             },
         },
     },
@@ -22,11 +29,9 @@ const config: Config = {
             addUtilities({
                 ".text-outline": {
                     "-webkit-text-stroke-width": "1px",
-                    "-webkit-text-stroke-color": "white",
+                    "-webkit-text-stroke-color": theme("colors.gray.800"),
                 },
             });
         },
     ],
-};
-
-export default config;
+} satisfies Config;
