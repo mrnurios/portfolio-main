@@ -68,7 +68,7 @@ export default function Home() {
                             <span>I&apos;m a&nbsp;</span>
                             <span
                                 ref={typedElement}
-                                className="inline-block text-white min-w-60"
+                                className="inline-block text-white min-w-fit"
                             ></span>
                         </p>
                         <div className="grid grid-cols-2 gap-x-5 text-center">
