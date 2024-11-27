@@ -28,8 +28,9 @@ export default {
         }) {
             addUtilities({
                 ".text-outline": {
+                    color: "transparent",
                     "-webkit-text-stroke-width": "1px",
-                    "-webkit-text-stroke-color": theme("colors.gray.800"),
+                    "-webkit-text-stroke-color": "white",
                 },
             });
         },
