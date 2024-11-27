@@ -21,6 +21,7 @@ const useSmoothScroll = () => {
 };
 
 export default function Home() {
+    const [hoverStates, setHoverStates] = useState<boolean[]>([]);
     const sectionRef = useRef<HTMLDivElement | null>(null);
     const smoothScrollY = useSmoothScroll();
     const [sectionTop, setSectionTop] = useState(0);
@@ -51,6 +52,24 @@ export default function Home() {
             window.removeEventListener("resize", handleResize);
         };
     }, []);
+
+    const handleMouseEnter = (index: number) => {
+        setHoverStates((prev) => {
+            const updated = [...prev];
+            updated[index] = true; // Set the hover state to true for the specific index
+            return updated;
+        });
+        handleHover(index);
+    };
+
+    const handleMouseLeave = (index: number) => {
+        setHoverStates((prev) => {
+            const updated = [...prev];
+            updated[index] = false; // Reset the hover state for the specific index
+            return updated;
+        });
+        resetBlur();
+    };
 
     const handleHover = (childIndex: number) => {
         const children = document.querySelectorAll(".hover-child");
@@ -285,18 +304,19 @@ export default function Home() {
                         </div>
                         <div className="md:sticky top-0 w-full p-5 mx-auto gap-5 md:gap-y-40 flex flex-col md:grid grid-flow-col grid-cols-3 grid-rows-2 h-fit">
                             {items.map((item, index) => {
-                                const [isHovered, setIsHovered] =
-                                    useState(false);
+                                const isHovered = hoverStates[index] || false;
+                                // const [isHovered, setIsHovered] =
+                                //     useState(false);
 
-                                const handleMouseEnter = (index: number) => {
-                                    handleHover(index); // Call your existing hover handler
-                                    setIsHovered(true); // Set the hover state to true
-                                };
+                                // const handleMouseEnter = (index: number) => {
+                                //     handleHover(index); // Call your existing hover handler
+                                //     setIsHovered(true); // Set the hover state to true
+                                // };
 
-                                const handleMouseLeave = () => {
-                                    resetBlur();
-                                    setIsHovered(false); // Set the hover state to true
-                                };
+                                // const handleMouseLeave = () => {
+                                //     resetBlur();
+                                //     setIsHovered(false); // Set the hover state to true
+                                // };
 
                                 return (
                                     <div
@@ -311,7 +331,9 @@ export default function Home() {
                                         onMouseEnter={() =>
                                             handleMouseEnter(index)
                                         }
-                                        onMouseLeave={handleMouseLeave}
+                                        onMouseLeave={() =>
+                                            handleMouseLeave(index)
+                                        }
                                         style={
                                             isMobile //disable parallax and other styling
                                                 ? {}
