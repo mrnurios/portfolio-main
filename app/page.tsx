@@ -173,8 +173,8 @@ export default function Home() {
                                 <span className="font-semibold">
                                     Clyb Abraham Bongcayao.&nbsp;
                                 </span>
-                                I'm a Freelance TALL Stack Developer based in
-                                Philippines. A graduate with a Bachelor of
+                                I&apos;m a Freelance TALL Stack Developer based
+                                in Philippines. A graduate with a Bachelor of
                                 Science in Information Technology from Mindanao
                                 State University - Iligan Institute of
                                 Technology. I specialize in web developing,
