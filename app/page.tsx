@@ -96,49 +96,59 @@ export default function Home() {
             title: "69WPM",
             description: "TypeSpeed",
             speed: 0.15 * Yspeed, // Custom parallax speed
-            class: "md:w-[500px]",
+            class: "md:w-[400px]",
             xpos: 50,
             ypos: 100,
+            link: "https://www.typing.com/student/typing-test/1-minute",
         },
         {
             id: 2,
-            type: "text",
-            content: "hello",
-            title: "",
-            description: "",
+            type: "img",
+            content: "/img/fullhouse.jpg",
+            title: "Customer Service",
+            description: "Customer service at FullHouse Lugait",
+            class: "md:w-[350px]",
             speed: 0.19 * Yspeed, // Custom parallax speed
             xpos: 200,
             ypos: 100,
+            link: "https://www.facebook.com/profile.php?id=100086284085429",
         },
         {
             id: 3,
-            type: "text",
-            content: "Div 3",
-            title: "69WPM",
-            description: "",
+            type: "img",
+            content: "/img/12.jpg",
+            title: "Model for Photoshoot",
+            description: "MJ Lechon Haus",
+            class: "md:w-[500px] z-10",
             speed: 0.3 * Yspeed, // Custom parallax speed
-            xpos: 100,
+            xpos: 50,
             ypos: 100,
+            link: "",
         },
         {
             id: 4,
             type: "video",
-            content: "Div 4",
-            title: "4",
-            description: "",
+            content: "/vids/ibotika.webm",
+            title: "Landing Page",
+            description: "Developed landing page for iBotika using Tailwind",
+            class: "md:w-[500px] z-10",
             speed: 0.45 * Yspeed, // Custom parallax speed
             xpos: -50,
             ypos: 500,
+            link: "https://www.facebook.com/ibotikaph",
         },
         {
             id: 5,
-            type: "text",
-            content: "Div 5",
-            title: "69WPM",
-            description: "",
+            type: "video",
+            content: "/vids/AI.webm",
+            title: "AI Face Tracker Temperature Detection",
+            description:
+                "Developed using Python with OpenCV Haar Cascade Model",
+            class: "md:w-[500px]",
             speed: 0.1 * Yspeed, // Custom parallax speed
             xpos: -200,
             ypos: 100,
+            link: "https://github.com/mrnurios/FaceDecTemp",
         },
         {
             id: 6,
@@ -150,6 +160,7 @@ export default function Home() {
             class: "md:w-[500px]",
             xpos: -60,
             ypos: 100,
+            link: "https://excaliburjs.com/",
         },
     ];
 
@@ -266,66 +277,63 @@ export default function Home() {
                 <section
                     id="projects"
                     ref={sectionRef}
-                    className="relative md:h-[450vh]"
+                    className="relative md:h-[500vh]"
                 >
                     <div className="relative max-w-7xl mx-auto h-full w-full flex flex-col gap-10">
-                        <div className="md:absolute top-28 w-full flex flex-col">
-                            <span
-                                className="text-amber-400 text-5xl md:text-8xl font-black w-full text-nowrap text-outline outline-amber-400"
-                                style={{
-                                    transform: `translateX(${
-                                        smoothScrollY * 15 * -0.1
-                                    }px)`,
-                                    willChange: "transform",
-                                }}
-                            >
-                                PROJECTS & SKILLS PROJECTS & SKILLS PROJECTS &
-                                SKILLS PROJECTS & SKILLS PROJECTS & SKILLS
-                                PROJECTS & SKILLS PROJECTS & SKILLS PROJECTS &
-                                SKILLS PROJECTS & SKILLS
-                            </span>
-                            <span className="text-amber-400 text-3xl md:text-6xl text-center mx-auto font-black">
-                                Projects & Skills
-                            </span>
-                            <span
-                                className="text-amber-400 text-5xl md:text-8xl text-justify mx-auto font-black w-full text-nowrap text-outline-amber-400"
-                                style={{
-                                    transform: `translateX(${
-                                        smoothScrollY * 4 * -0.1
-                                    }px)`,
-                                    willChange: "transform",
-                                }}
-                            >
-                                PROJECTS & SKILLS PROJECTS & SKILLS PROJECTS &
-                                SKILLS PROJECTS & SKILLS PROJECTS & SKILLS
-                                PROJECTS & SKILLS PROJECTS & SKILLS PROJECTS &
-                                SKILLS PROJECTS & SKILLS
+                        <div className="md:absolute top-28 w-full grid grid-flow-col grid-cols-1 grid-rows-2 gap-4 md:gap-10">
+                            <div className="relative w-full h-fit">
+                                <span
+                                    className="absolute top-0 text-amber-400 text-5xl md:text-8xl font-black text-nowrap text-outline outline-amber-400 content-center"
+                                    style={{
+                                        transform: `translateX(${
+                                            smoothScrollY * 15 * -0.1
+                                        }px)`,
+                                        willChange: "transform",
+                                    }}
+                                >
+                                    SKILLS & EXPERIENCE SKILLS & EXPERIENCE
+                                    SKILLS & EXPERIENCE SKILLS & EXPERIENCE
+                                    SKILLS & EXPERIENCE SKILLS & EXPERIENCE
+                                    SKILLS & EXPERIENCE SKILLS & EXPERIENCE
+                                    SKILLS & EXPERIENCE SKILLS & EXPERIENCE
+                                    SKILLS & EXPERIENCE
+                                </span>
+                                <span
+                                    className="absolute top-2 text-amber-400 text-5xl md:text-8xl text-justify mx-auto font-black text-nowrap text-outline-amber-400"
+                                    style={{
+                                        transform: `translateX(${
+                                            smoothScrollY * 10 * -0.1
+                                        }px)`,
+                                        willChange: "transform",
+                                    }}
+                                >
+                                    SKILLS & EXPERIENCE SKILLS & EXPERIENCE
+                                    SKILLS & EXPERIENCE SKILLS & EXPERIENCE
+                                    SKILLS & EXPERIENCE SKILLS & EXPERIENCE
+                                    SKILLS & EXPERIENCE SKILLS & EXPERIENCE
+                                    SKILLS & EXPERIENCE SKILLS & EXPERIENCE
+                                    SKILLS & EXPERIENCE
+                                </span>
+                            </div>
+                            <span className="text-amber-400 text-2xl md:text-6xl text-center mx-auto font-black w-full">
+                                Skills & Experience
                             </span>
                         </div>
-                        <div className="md:sticky top-0 w-full p-5 mx-auto gap-5 md:gap-y-40 flex flex-col md:grid grid-flow-col grid-cols-3 grid-rows-2 h-fit">
+                        <div className="md:sticky top-0 w-full p-5 mx-auto gap-5 md:gap-y-20 flex flex-col md:grid grid-flow-col grid-cols-3 grid-rows-2 h-fit">
                             {items.map((item, index) => {
                                 const isHovered = hoverStates[index] || false;
-                                // const [isHovered, setIsHovered] =
-                                //     useState(false);
-
-                                // const handleMouseEnter = (index: number) => {
-                                //     handleHover(index); // Call your existing hover handler
-                                //     setIsHovered(true); // Set the hover state to true
-                                // };
-
-                                // const handleMouseLeave = () => {
-                                //     resetBlur();
-                                //     setIsHovered(false); // Set the hover state to true
-                                // };
 
                                 return (
-                                    <div
+                                    <a
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        href={item.link}
                                         key={item.id}
                                         className={`${
                                             isMobile ? "" : "hover-child"
                                         } ${item.class}
-                                                relative h-fit rounded-lg overflow-clip p-2 space-y-3
-                                                duration-300 transform hover:z-10
+                                                relative h-fit rounded-lg overflow-clip p-2 space-y-3 cursor-alias
+                                                duration-200 transform hover:z-20 bg-gray-500/50
                                                 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]
                                             `}
                                         onMouseEnter={() =>
@@ -347,7 +355,7 @@ export default function Home() {
                                                           item.xpos
                                                       }px) ${
                                                           isHovered
-                                                              ? "scale(1.1)"
+                                                              ? "scale(1.3)"
                                                               : ""
                                                       }`,
                                                       willChange: "transform",
@@ -363,62 +371,71 @@ export default function Home() {
                                             </span>
                                         </p>
                                         {item.type === "video" ? (
-                                            <div className="">
-                                                <video
-                                                    className="self-center rounded h-full"
-                                                    src={item.content}
-                                                    autoPlay
-                                                    loop
-                                                    muted
-                                                >
-                                                    Your browser does not
-                                                    support the video.
-                                                </video>
-                                            </div>
+                                            <video
+                                                className="self-center rounded h-full"
+                                                src={item.content}
+                                                autoPlay
+                                                loop
+                                                muted
+                                            >
+                                                Your browser does not support
+                                                the video.
+                                            </video>
                                         ) : (
-                                            <div className="">
-                                                <span className="relative text-white font-semibold flex items-center justify-center h-full">
-                                                    {item.content}
-                                                </span>
-                                            </div>
+                                            <img
+                                                src={`${item.content}`}
+                                                className={`${item.class}self-center rounded h-full`}
+                                            />
                                         )}
-                                    </div>
+                                    </a>
                                 );
                             })}
                         </div>
 
-                        <div className="md:absolute bottom-52 w-full flex flex-col">
-                            <span
-                                className="text-5xl md:text-8xl mx-auto font-black w-full text-nowrap text-outline"
-                                style={{
-                                    transform: `translateX(${
-                                        smoothScrollY * 30 * -0.1
-                                    }px)`,
-                                    willChange: "transform",
-                                }}
-                            >
-                                MORE PROJECTS SOON MORE PROJECTS SOON MORE
-                                PROJECTS SOON MORE PROJECTS SOON MORE PROJECTS
-                                SOON MORE PROJECTS SOON MORE PROJECTS SOON MORE
-                                PROJECTS SOON MORE PROJECTS SOON MORE PROJECTS
-                                SOON MORE PROJECTS SOON MORE PROJECTS SOON MORE
-                                PROJECTS SOON MORE PROJECTS SOON
-                            </span>
+                        <div className="md:absolute bottom-28 w-full grid grid-flow-col grid-cols-1 grid-rows-2 gap-4 md:gap-10">
+                            <div className="relative">
+                                <span
+                                    className="absolute top-0 text-5xl md:text-8xl mx-auto font-black w-full text-nowrap text-outline"
+                                    style={{
+                                        transform: `translateX(${
+                                            smoothScrollY * 15 * -0.1
+                                        }px)`,
+                                        willChange: "transform",
+                                    }}
+                                >
+                                    MORE PROJECTS SOON MORE PROJECTS SOON MORE
+                                    PROJECTS SOON MORE PROJECTS SOON MORE
+                                    PROJECTS SOON MORE PROJECTS SOON MORE
+                                    PROJECTS SOON MORE PROJECTS SOON MORE
+                                    PROJECTS SOON MORE PROJECTS SOON MORE
+                                    PROJECTS SOON MORE PROJECTS SOON MORE
+                                    PROJECTS SOON MORE PROJECTS SOON
+                                </span>
+                                <span
+                                    className="absolute top-2 text-amber-400 text-5xl md:text-8xl mx-auto font-black w-full text-nowrap"
+                                    style={{
+                                        transform: `translateX(${
+                                            smoothScrollY * 10 * -0.1
+                                        }px)`,
+                                        willChange: "transform",
+                                    }}
+                                >
+                                    MORE PROJECTS SOON MORE PROJECTS SOON MORE
+                                    PROJECTS SOON MORE PROJECTS SOON MORE
+                                    PROJECTS SOON MORE PROJECTS SOON MORE
+                                    PROJECTS SOON MORE PROJECTS SOON MORE
+                                    PROJECTS SOON MORE PROJECTS SOON MORE
+                                    PROJECTS SOON MORE PROJECTS SOON MORE
+                                    PROJECTS SOON MORE PROJECTS SOON MORE
+                                    PROJECTS SOON MORE PROJECTS SOON MORE
+                                    PROJECTS SOON MORE PROJECTS SOON MORE
+                                    PROJECTS SOON MORE PROJECTS SOON MORE
+                                    PROJECTS SOON
+                                </span>
+                            </div>
+
                             <span className="text-amber-400 text-3xl md:text-6xl text-center mx-auto font-black">
                                 More Projects Soon...
-                            </span>
-                            <span
-                                className="text-amber-400 text-5xl md:text-8xl text-justify mx-auto font-black w-full text-nowrap text-outline-amber-400"
-                                style={{
-                                    transform: `translateX(${
-                                        smoothScrollY * 10 * -0.1
-                                    }px)`,
-                                    willChange: "transform",
-                                }}
-                            >
-                                MORE PROJECTS SOON MORE PROJECTS SOON MORE
-                                PROJECTS SOON MORE PROJECTS SOON MORE PROJECTS
-                                SOON MORE PROJECTS SOON MORE PROJECTS SOON
                             </span>
                         </div>
                     </div>
