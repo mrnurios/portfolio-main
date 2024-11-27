@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import Typed from "typed.js";
 
 export default function Home() {
-    const typedElement = useRef(null);
+    const typedElement = useRef<HTMLSpanElement | null>(null);
 
     useEffect(() => {
         const options = {
@@ -56,7 +56,7 @@ export default function Home() {
                 <div className="relative">
                     <div className="text-left grid gap-y-5 max-w-xl">
                         <h1 className="font-black text-7xl text-amber-400">
-                            Hi, I'm Clyb.
+                            Hi, I&apos;m Clyb.
                         </h1>
                         <p
                             className="flex text-lg items-center"
@@ -65,10 +65,10 @@ export default function Home() {
                             data-aos-delay="500"
                             data-aos-easing="ease-in-out"
                         >
-                            <span>I'm a&nbsp;</span>
+                            <span>I&apos;m a&nbsp;</span>
                             <span
                                 ref={typedElement}
-                                className="inline-block text-white"
+                                className="inline-block text-white min-w-60"
                             ></span>
                         </p>
                         <div className="grid grid-cols-2 gap-x-5 text-center">
