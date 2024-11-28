@@ -1,7 +1,11 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import Typed from "typed.js";
+
+interface HeroProps {
+    heroRef: React.RefObject<HTMLElement>; // Receiving heroRef as a prop
+}
 
 export default function Home() {
     const typedElement = useRef<HTMLSpanElement | null>(null);
@@ -12,6 +16,7 @@ export default function Home() {
                 "web developer.",
                 "programmer.",
                 "front-end developer.",
+                "data scraper.",
                 "data encoder.",
                 "data analyst.",
                 "photo editor.",

@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Hero from "../components/hero";
 import emailjs from "emailjs-com"; // Import EmailJS SDK
+// import { HeaderBlurContext } from "./layout";
 
 const useSmoothScroll = () => {
     const [smoothScrollY, setSmoothScrollY] = useState(0);
@@ -72,11 +73,6 @@ export default function Home() {
         if (sectionRef.current) {
             setSectionTop(sectionRef.current.offsetTop);
         }
-        const handleResize = () => {
-            if (sectionRef.current) {
-                setSectionTop(sectionRef.current.offsetTop);
-            }
-        };
 
         const checkMobile = () => {
             setIsMobile(window.innerWidth <= 768); // Set to true if screen width is less than or equal to 768px
@@ -85,11 +81,9 @@ export default function Home() {
         checkMobile(); // Initial check
 
         window.addEventListener("resize", checkMobile); // Listen to resize events
-        window.addEventListener("resize", handleResize);
 
         return () => {
             window.removeEventListener("resize", checkMobile);
-            window.removeEventListener("resize", handleResize);
         };
     }, []);
 
@@ -115,14 +109,14 @@ export default function Home() {
         const children = document.querySelectorAll(".hover-child");
         children.forEach((child, index) => {
             if (index !== childIndex) {
-                child.classList.add("blur-md");
+                child.classList.add("blur-sm");
             }
         });
     };
 
     const resetBlur = () => {
         document.querySelectorAll(".hover-child").forEach((child) => {
-            child.classList.remove("blur-md");
+            child.classList.remove("blur-sm");
         });
     };
 
@@ -140,6 +134,7 @@ export default function Home() {
             xpos: 50,
             ypos: 100,
             link: "https://www.typing.com/student/typing-test/1-minute",
+            tags: [],
         },
         {
             id: 2,
@@ -152,6 +147,7 @@ export default function Home() {
             xpos: 200,
             ypos: 100,
             link: "https://www.facebook.com/profile.php?id=100086284085429",
+            tags: [],
         },
         {
             id: 3,
@@ -164,6 +160,7 @@ export default function Home() {
             xpos: 50,
             ypos: 100,
             link: "",
+            tags: [],
         },
         {
             id: 4,
@@ -176,6 +173,7 @@ export default function Home() {
             xpos: -50,
             ypos: 500,
             link: "https://www.facebook.com/ibotikaph",
+            tags: ["HTML", "CSS", "JS", "Tailwind"],
         },
         {
             id: 5,
@@ -189,6 +187,7 @@ export default function Home() {
             xpos: -200,
             ypos: 100,
             link: "https://github.com/mrnurios/FaceDecTemp",
+            tags: ["Python", "OpenCV", "AI"],
         },
         {
             id: 6,
@@ -201,13 +200,14 @@ export default function Home() {
             xpos: -60,
             ypos: 100,
             link: "https://excaliburjs.com/",
+            tags: ["HTML", "ExcaliburJS", "JS"],
         },
     ];
 
     return (
         <>
             <Hero />
-            <main className="relative font-[family-name:var(--font-geist-sans)] w-full h-full flex flex-col text-white py-20 md:gap-y-10 overflow-clip">
+            <main className="relative font-[family-name:var(--font-geist-sans)] w-full h-full flex flex-col text-white pt-20 md:gap-y-10 overflow-clip">
                 <section
                     id="aboutme"
                     className="relative h-full w-full p-10 md:px-20 md:p-10"
@@ -281,8 +281,8 @@ export default function Home() {
                             </div>
                             <a
                                 className="relative group size-fit rounded-lg px-4 py-3 bg-amber-400  transition-all duration-300 hover:scale-110"
-                                href="docs/clyb_resume.pdf"
-                                download="clyb_resume.pdf"
+                                href="docs/bongcayao.pdf"
+                                download="bongcayao_resume.pdf"
                             >
                                 <span className="absolute transition-opacity duration-500 inset-0 size-full rounded-lg bg-gradient-to-r from-pink-500 to-indigo-500 opacity-0 group-hover:opacity-100"></span>
                                 <span
@@ -305,7 +305,7 @@ export default function Home() {
                         <div className="md:absolute top-28 w-full h-fit flex flex-col gap-y-10">
                             <div className="relative w-full flex flex-col items-center justify-center">
                                 <span
-                                    className="absolute text-5xl md:text-8xl mx-auto font-black w-full text-nowrap text-outline opacity-50"
+                                    className="absolute text-5xl md:text-8xl mx-auto font-black w-full text-nowrap text-outline opacity-35"
                                     style={{
                                         transform: `translateX(${
                                             smoothScrollY * 15 * -0.1
@@ -393,15 +393,27 @@ export default function Home() {
                                                 className={`${item.class}self-center rounded h-full`}
                                             />
                                         )}
+                                        {item.tags.length > 0 && (
+                                            <div className="text-xs flex gap-2">
+                                                {item.tags.map((tag, index) => (
+                                                    <span
+                                                        key={index}
+                                                        className="bg-neutral-800 rounded-full px-2 py-0.5 hover:bg-gradient-to-r from-pink-500 to-indigo-500"
+                                                    >
+                                                        {tag}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        )}
                                     </a>
                                 );
                             })}
                         </div>
 
-                        <div className="md:absolute bottom-0 w-full flex flex-col gap-y-10">
+                        <div className="md:absolute bottom-0 w-full h-screen flex flex-col gap-y-10 justify-center">
                             <div className="relative w-full flex flex-col items-center">
                                 <span
-                                    className="absolute top-0 text-5xl md:text-8xl mx-auto font-black w-full text-nowrap text-outline opacity-50"
+                                    className="absolute top-0 text-5xl md:text-8xl mx-auto font-black w-full text-nowrap text-outline opacity-35"
                                     style={{
                                         transform: `translateX(${
                                             smoothScrollY * 15 * -0.1
