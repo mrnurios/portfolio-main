@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image"; // Import Image component
 import Hero from "../components/hero";
 import emailjs from "emailjs-com"; // Import EmailJS SDK
 // import { HeaderBlurContext } from "./layout";
@@ -127,10 +128,11 @@ export default function Home() {
             id: 1,
             type: "video",
             content: "/vids/type-speed.webm",
+            alt: "typespeed",
             title: "69WPM",
             description: "My typing speed",
             speed: 0.15 * Yspeed, // Custom parallax speed
-            class: "md:w-[400px]",
+            class: "lg:w-[400px]",
             xpos: 50,
             ypos: 100,
             link: "https://www.typing.com/student/typing-test/1-minute",
@@ -140,9 +142,10 @@ export default function Home() {
             id: 2,
             type: "img",
             content: "/img/fullhouse.jpg",
+            alt: "fullhouse",
             title: "Customer Service",
             description: "Customer service at FullHouse Lugait",
-            class: "md:w-[350px]",
+            class: "lg:w-[350px]",
             speed: 0.19 * Yspeed, // Custom parallax speed
             xpos: 200,
             ypos: 100,
@@ -153,9 +156,10 @@ export default function Home() {
             id: 3,
             type: "img",
             content: "/img/12.jpg",
+            alt: "dotted studios",
             title: "Social Media Marketing Intern",
             description: "Photoshoot for one of the clients of Dotted Studios",
-            class: "md:w-[500px] z-10",
+            class: "lg:w-[500px] z-10",
             speed: 0.3 * Yspeed, // Custom parallax speed
             xpos: 50,
             ypos: 100,
@@ -166,9 +170,10 @@ export default function Home() {
             id: 4,
             type: "video",
             content: "/vids/ibotika.webm",
+            alt: "ibotika",
             title: "Landing Page",
             description: "Developed landing page for iBotika using Tailwind",
-            class: "md:w-[500px] z-10",
+            class: "lg:w-[500px] z-10",
             speed: 0.45 * Yspeed, // Custom parallax speed
             xpos: -50,
             ypos: 500,
@@ -179,10 +184,11 @@ export default function Home() {
             id: 5,
             type: "video",
             content: "/vids/AI.webm",
+            alt: "AI",
             title: "AI Face Tracker Temperature Detection",
             description:
                 "Developed using Python with OpenCV Haar Cascade Model",
-            class: "md:w-[500px]",
+            class: "lg:w-[500px]",
             speed: 0.1 * Yspeed, // Custom parallax speed
             xpos: -200,
             ypos: 100,
@@ -193,10 +199,11 @@ export default function Home() {
             id: 6,
             type: "video",
             content: "/vids/excalibur.webm",
+            alt: "game",
             title: "2d Shooter Game",
             description: "Excalibur JS Game Engine",
             speed: 0.26 * Yspeed, // Custom parallax speed
-            class: "md:w-[500px]",
+            class: "lg:w-[500px]",
             xpos: -60,
             ypos: 100,
             link: "https://excaliburjs.com/",
@@ -299,7 +306,7 @@ export default function Home() {
                 <section
                     id="projects"
                     ref={sectionRef}
-                    className="relative md:h-[500vh]"
+                    className="relative h-fit md:h-[500vh]"
                 >
                     <div className="relative max-w-7xl mx-auto h-full w-full flex flex-col gap-10">
                         <div className="md:absolute top-28 w-full h-fit flex flex-col gap-y-10">
@@ -388,8 +395,12 @@ export default function Home() {
                                                 the video.
                                             </video>
                                         ) : (
-                                            <img
-                                                src={`${item.content}`}
+                                            <Image
+                                                alt={item.alt}
+                                                src={item.content}
+                                                layout="responsive"
+                                                width={500} // Width as a reference for aspect ratio
+                                                height={300}
                                                 className={`${item.class}self-center rounded h-full`}
                                             />
                                         )}

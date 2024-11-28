@@ -3,10 +3,6 @@
 import React, { useEffect, useRef } from "react";
 import Typed from "typed.js";
 
-interface HeroProps {
-    heroRef: React.RefObject<HTMLElement>; // Receiving heroRef as a prop
-}
-
 export default function Home() {
     const typedElement = useRef<HTMLSpanElement | null>(null);
 
