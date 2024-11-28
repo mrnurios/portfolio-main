@@ -48,11 +48,11 @@ export default function Home() {
                 "Y3KD_37tJXS80YGJE"
             )
             .then(
-                (response) => {
+                () => {
                     setIsSubmitting(false);
                     setStatusMessage("Message sent successfully!");
                 },
-                (error) => {
+                () => {
                     setIsSubmitting(false);
                     setStatusMessage(
                         "Error sending message. Please try again."
