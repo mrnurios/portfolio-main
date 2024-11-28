@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Hero from "../components/hero";
+import emailjs from "emailjs-com"; // Import EmailJS SDK
 
 const useSmoothScroll = () => {
     const [smoothScrollY, setSmoothScrollY] = useState(0);
@@ -24,11 +25,40 @@ export default function Home() {
     const [email, setEmail] = useState("");
     const [subject, setSubject] = useState("");
     const [message, setMessage] = useState("");
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [statusMessage, setStatusMessage] = useState("");
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // Handle form submission logic here
-        alert("Form Submitted!");
+        setIsSubmitting(true);
+        setStatusMessage("Sending...");
+
+        const formData = {
+            user_email: email,
+            user_subject: subject,
+            user_message: message,
+        };
+
+        // Send email using EmailJS
+        emailjs
+            .send(
+                "service_i2pvobc",
+                "template_dd15ggn",
+                formData,
+                "Y3KD_37tJXS80YGJE"
+            )
+            .then(
+                (response) => {
+                    setIsSubmitting(false);
+                    setStatusMessage("Message sent successfully!");
+                },
+                (error) => {
+                    setIsSubmitting(false);
+                    setStatusMessage(
+                        "Error sending message. Please try again."
+                    );
+                }
+            );
     };
 
     const [hoverStates, setHoverStates] = useState<boolean[]>([]);
@@ -104,7 +134,7 @@ export default function Home() {
             type: "video",
             content: "/vids/type-speed.webm",
             title: "69WPM",
-            description: "TypeSpeed",
+            description: "My typing speed",
             speed: 0.15 * Yspeed, // Custom parallax speed
             class: "md:w-[400px]",
             xpos: 50,
@@ -127,8 +157,8 @@ export default function Home() {
             id: 3,
             type: "img",
             content: "/img/12.jpg",
-            title: "Model for Photoshoot",
-            description: "MJ Lechon Haus",
+            title: "Social Media Marketing Intern",
+            description: "Photoshoot for one of the clients of Dotted Studios",
             class: "md:w-[500px] z-10",
             speed: 0.3 * Yspeed, // Custom parallax speed
             xpos: 50,
@@ -223,46 +253,28 @@ export default function Home() {
                                 challenges.
                             </p>
                             <div className="overflow-clip grid md:grid-flow-col md:grid-rows-2 md:grid-cols-2 items-center size-full h-fit gap-y-4 border-2 rounded border-amber-400 p-5 text-sm tracking-wide">
-                                <h1
-                                    data-aos-anchor-placement="bottom-bottom"
-                                    data-aos="fade-right"
-                                    data-aos-delay="100"
-                                    className=""
-                                >
-                                    <span className="font-semibold">Name:</span>
+                                <h1 className="">
+                                    <span className="font-semibold">
+                                        Name:&nbsp;
+                                    </span>
                                     Clyb Abraham Bongcayao
                                 </h1>
-                                <h1
-                                    data-aos-anchor-placement="bottom-bottom"
-                                    data-aos="fade-right"
-                                    data-aos-delay="0"
-                                    className=""
-                                >
+                                <h1 className="">
                                     <span className="font-semibold">
-                                        Phone:
+                                        Phone:&nbsp;
                                     </span>
                                     +639512577048
                                 </h1>
-                                <h1
-                                    data-aos-anchor-placement="bottom-bottom"
-                                    data-aos="fade-right"
-                                    data-aos-delay="300"
-                                    className=""
-                                >
+                                <h1 className="">
                                     <span className="font-semibold">
-                                        Email:
+                                        Email:&nbsp;
                                     </span>
                                     cabongcayao@gmail.com
                                 </h1>
 
-                                <h1
-                                    data-aos-anchor-placement="bottom-bottom"
-                                    data-aos="fade-right"
-                                    data-aos-delay="100"
-                                    className=""
-                                >
+                                <h1 className="">
                                     <span className="font-semibold">
-                                        Address:
+                                        Address:&nbsp;
                                     </span>
                                     Lugait, Misamis Oriental
                                 </h1>
@@ -290,10 +302,10 @@ export default function Home() {
                     className="relative md:h-[500vh]"
                 >
                     <div className="relative max-w-7xl mx-auto h-full w-full flex flex-col gap-10">
-                        <div className="md:absolute top-28 w-full grid grid-flow-col grid-cols-1 grid-rows-2 gap-4 md:gap-10">
-                            <div className="relative w-full h-fit">
+                        <div className="md:absolute top-28 w-full h-fit flex flex-col gap-y-10">
+                            <div className="relative w-full flex flex-col items-center justify-center">
                                 <span
-                                    className="absolute top-0 text-amber-400 text-5xl md:text-8xl font-black text-nowrap text-outline outline-amber-400 content-center"
+                                    className="absolute text-5xl md:text-8xl mx-auto font-black w-full text-nowrap text-outline opacity-50"
                                     style={{
                                         transform: `translateX(${
                                             smoothScrollY * 15 * -0.1
@@ -308,26 +320,10 @@ export default function Home() {
                                     SKILLS & EXPERIENCE SKILLS & EXPERIENCE
                                     SKILLS & EXPERIENCE
                                 </span>
-                                <span
-                                    className="absolute top-2 text-amber-400 text-5xl md:text-8xl text-justify mx-auto font-black text-nowrap text-outline-amber-400"
-                                    style={{
-                                        transform: `translateX(${
-                                            smoothScrollY * 10 * -0.1
-                                        }px)`,
-                                        willChange: "transform",
-                                    }}
-                                >
-                                    SKILLS & EXPERIENCE SKILLS & EXPERIENCE
-                                    SKILLS & EXPERIENCE SKILLS & EXPERIENCE
-                                    SKILLS & EXPERIENCE SKILLS & EXPERIENCE
-                                    SKILLS & EXPERIENCE SKILLS & EXPERIENCE
-                                    SKILLS & EXPERIENCE SKILLS & EXPERIENCE
+                                <span className="relative text-amber-400 text-center text-5xl md:text-8xl mx-auto font-black">
                                     SKILLS & EXPERIENCE
                                 </span>
                             </div>
-                            <span className="text-amber-400 text-2xl md:text-6xl text-center mx-auto font-black w-full">
-                                Skills & Experience
-                            </span>
                         </div>
                         <div className="md:sticky top-0 w-full p-5 mx-auto gap-5 md:gap-y-20 flex flex-col md:grid grid-flow-col grid-cols-3 grid-rows-2 h-fit">
                             {items.map((item, index) => {
@@ -343,7 +339,7 @@ export default function Home() {
                                             isMobile ? "" : "hover-child"
                                         } ${item.class}
                                                 relative h-fit rounded-lg overflow-clip p-2 space-y-3 cursor-alias
-                                                duration-200 transform hover:z-20 bg-gray-500/50
+                                                duration-200 transform hover:z-20
                                                 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]
                                             `}
                                         onMouseEnter={() =>
@@ -402,10 +398,10 @@ export default function Home() {
                             })}
                         </div>
 
-                        <div className="md:absolute bottom-0 w-full flex flex-col gap-14 md:gap-24">
-                            <div className="relative w-full h-fit">
+                        <div className="md:absolute bottom-0 w-full flex flex-col gap-y-10">
+                            <div className="relative w-full flex flex-col items-center">
                                 <span
-                                    className="absolute top-0 text-5xl md:text-8xl mx-auto font-black w-full text-nowrap text-outline"
+                                    className="absolute top-0 text-5xl md:text-8xl mx-auto font-black w-full text-nowrap text-outline opacity-50"
                                     style={{
                                         transform: `translateX(${
                                             smoothScrollY * 15 * -0.1
@@ -423,28 +419,9 @@ export default function Home() {
                                     NOW HIRE ME NOW HIRE ME NOW HIRE ME NOW HIRE
                                     ME NOW HIRE ME NOW HIRE ME NOW
                                 </span>
-                                <span
-                                    className="absolute top-2 text-amber-400 text-5xl md:text-8xl mx-auto font-black w-full text-nowrap"
-                                    style={{
-                                        transform: `translateX(${
-                                            smoothScrollY * 10 * -0.1
-                                        }px)`,
-                                        willChange: "transform",
-                                    }}
-                                >
-                                    HIRE ME NOW HIRE ME NOW HIRE ME NOW HIRE ME
-                                    NOW HIRE ME NOW HIRE ME NOW HIRE ME NOW HIRE
-                                    ME NOW HIRE ME NOW HIRE ME NOW HIRE ME NOW
-                                    HIRE ME NOW HIRE ME NOW HIRE ME NOW HIRE ME
-                                    NOW HIRE ME NOW HIRE ME NOW HIRE ME NOW HIRE
-                                    ME NOW HIRE ME NOW HIRE ME NOW HIRE ME NOW
-                                    HIRE ME NOW HIRE ME NOW HIRE ME NOW HIRE ME
-                                    NOW HIRE ME NOW HIRE ME NOW HIRE ME NOW HIRE
-                                    ME NOW HIRE ME NOW HIRE ME NOW
+                                <span className="relative text-amber-400 text-5xl md:text-8xl mx-auto font-black">
+                                    HIRE ME!
                                 </span>
-                            </div>
-                            <div className="text-amber-400 text-3xl md:text-6xl text-center mx-auto font-black">
-                                Hire Me!
                             </div>
                             <div
                                 id="contactme"
@@ -515,17 +492,32 @@ export default function Home() {
                                             }
                                             className="text-black mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                             placeholder="Write your message"
+                                            rows={4}
                                             required
                                         />
                                     </div>
 
+                                    {/* Status Message */}
+                                    {statusMessage && (
+                                        <div className="text-center text-sm text-gray-700 mt-2">
+                                            {statusMessage}
+                                        </div>
+                                    )}
+
                                     {/* Submit Button */}
-                                    <div className="flex justify-center">
+
+                                    <div className="flex">
                                         <button
                                             type="submit"
-                                            className="bg-amber-400 text-white px-6 py-2 w-full rounded-md shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            disabled={isSubmitting}
+                                            className="relative group size-fit rounded-lg px-10 py-3 bg-amber-400  transition-all duration-300 hover:scale-110"
                                         >
-                                            Send
+                                            <span className="absolute transition-opacity duration-500 inset-0 size-full rounded-lg bg-gradient-to-r from-pink-500 to-indigo-500 opacity-0 group-hover:opacity-100"></span>
+                                            <span className="relative font-semibold text-sm">
+                                                {isSubmitting
+                                                    ? "Sending..."
+                                                    : "Send"}
+                                            </span>
                                         </button>
                                     </div>
                                 </form>
