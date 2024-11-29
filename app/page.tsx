@@ -130,7 +130,7 @@ export default function Home() {
     };
 
     const Yspeed = 0.3 * (parallaxHeight / screenHeight);
-    const midOffset = 0.5 * Yspeed;
+    // const midOffset = 0.5 * Yspeed;
     // const Yspeed = 1;
     // const midOffset = (screenHeight / parallaxTop) * 2;
 
