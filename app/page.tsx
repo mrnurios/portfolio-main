@@ -64,27 +64,35 @@ export default function Home() {
     };
 
     const [hoverStates, setHoverStates] = useState<boolean[]>([]);
-    const sectionRef = useRef<HTMLDivElement | null>(null);
+    const parallaxRefHeight = useRef<HTMLDivElement | null>(null);
+    const parallaxRefTop = useRef<HTMLDivElement | null>(null);
+    const [parallaxHeight, setParallaxHeight] = useState(0);
+    const [screenHeight, setscreenHeight] = useState(0);
+    const [parallaxTop, setParallaxTop] = useState(0);
     const smoothScrollY = useSmoothScroll();
-    const [sectionTop, setSectionTop] = useState(0);
     const [isMobile, setIsMobile] = useState(false);
 
     // Scroll and resize effect to control when the section freezes
     useEffect(() => {
-        if (sectionRef.current) {
-            setSectionTop(sectionRef.current.offsetTop);
-        }
+        const handleResize = () => {
+            if (parallaxRefHeight.current && parallaxRefTop.current) {
+                setParallaxHeight(parallaxRefHeight.current.offsetHeight);
 
-        const checkMobile = () => {
+                // Use getBoundingClientRect for precise measurements
+                const rect = parallaxRefTop.current.getBoundingClientRect();
+                setParallaxTop(rect.top + window.scrollY);
+            }
+
             setIsMobile(window.innerWidth <= 768); // Set to true if screen width is less than or equal to 768px
+            setscreenHeight(window.innerHeight);
         };
 
-        checkMobile(); // Initial check
+        handleResize(); // Initial check
 
-        window.addEventListener("resize", checkMobile); // Listen to resize events
+        window.addEventListener("resize", handleResize); // Listen to resize events
 
         return () => {
-            window.removeEventListener("resize", checkMobile);
+            window.removeEventListener("resize", handleResize);
         };
     }, []);
 
@@ -121,7 +129,20 @@ export default function Home() {
         });
     };
 
-    const Yspeed = 3;
+    const Yspeed = 0.3 * (parallaxHeight / screenHeight);
+    const midOffset = 0.5 * Yspeed;
+    // const Yspeed = 1;
+    // const midOffset = (screenHeight / parallaxTop) * 2;
+
+    // console.log(
+    //     "Parallax Top:",
+    //     parallaxTop,
+    //     "Parallax Height:",
+    //     parallaxHeight
+    // );
+
+    // console.log("Yspeed:", Yspeed);
+    // console.log("midOffset:", midOffset);
 
     const items = [
         {
@@ -304,12 +325,15 @@ export default function Home() {
                     </div>
                 </section>
                 <section
+                    ref={parallaxRefHeight}
                     id="projects"
-                    ref={sectionRef}
                     className="relative h-fit md:h-[500vh]"
                 >
-                    <div className="relative max-w-7xl mx-auto h-full w-full flex flex-col gap-10">
-                        <div className="md:absolute top-28 w-full h-fit flex flex-col gap-y-10">
+                    <div
+                        ref={parallaxRefTop}
+                        className="relative max-w-7xl mx-auto h-full w-full flex flex-col gap-10"
+                    >
+                        <div className="sticky top-0 w-full h-60 md:h-72 flex flex-col gap-y-10 justify-center">
                             <div className="relative w-full flex flex-col items-center justify-center">
                                 <span
                                     className="absolute text-5xl md:text-8xl mx-auto font-black w-full text-nowrap text-outline opacity-35"
@@ -332,7 +356,7 @@ export default function Home() {
                                 </span>
                             </div>
                         </div>
-                        <div className="md:sticky top-0 w-full p-5 mx-auto gap-5 md:gap-y-20 flex flex-col md:grid grid-flow-col grid-cols-3 grid-rows-2 h-fit">
+                        <div className="md:sticky top-0 w-full p-5 mx-auto gap-5 md:gap-y-20 flex flex-col md:grid grid-flow-col grid-cols-3 grid-rows-2">
                             {items.map((item, index) => {
                                 const isHovered = hoverStates[index] || false;
 
@@ -359,14 +383,17 @@ export default function Home() {
                                             isMobile //disable parallax and other styling
                                                 ? {}
                                                 : {
-                                                      transform: `translateY(${
-                                                          item.ypos +
-                                                          (smoothScrollY -
-                                                              sectionTop * 4) *
-                                                              -item.speed
-                                                      }px) translateX(${
-                                                          item.xpos
-                                                      }px) ${
+                                                      transform: `
+                                                              translateY(${
+                                                                  item.ypos +
+                                                                  (smoothScrollY -
+                                                                      parallaxTop *
+                                                                          1.5) *
+                                                                      -item.speed
+                                                              }px)
+                                                              translateX(${
+                                                                  item.xpos
+                                                              }px) ${
                                                           isHovered
                                                               ? "scale(1.3)"
                                                               : ""
@@ -420,7 +447,10 @@ export default function Home() {
                                 );
                             })}
                         </div>
-
+                    </div>
+                </section>
+                <section className="relative h-screen">
+                    <div className="relative max-w-7xl mx-auto h-full w-full flex flex-col gap-10">
                         <div className="md:absolute bottom-0 w-full h-screen flex flex-col gap-y-10 justify-center">
                             <div className="relative w-full flex flex-col items-center">
                                 <span
