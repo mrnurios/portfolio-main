@@ -68,6 +68,7 @@ export default function Home() {
     const parallaxRefTop = useRef<HTMLDivElement | null>(null);
     const [parallaxHeight, setParallaxHeight] = useState(0);
     const [screenHeight, setscreenHeight] = useState(0);
+    const [screenWidth, setscreenWidth] = useState(0);
     const [parallaxTop, setParallaxTop] = useState(0);
     const smoothScrollY = useSmoothScroll();
     const [isMobile, setIsMobile] = useState(false);
@@ -85,6 +86,7 @@ export default function Home() {
 
             setIsMobile(window.innerWidth <= 768); // Set to true if screen width is less than or equal to 768px
             setscreenHeight(window.innerHeight);
+            setscreenWidth(window.innerWidth);
         };
 
         handleResize(); // Initial check
@@ -130,19 +132,13 @@ export default function Home() {
     };
 
     const Yspeed = 0.3 * (parallaxHeight / screenHeight);
-    // const midOffset = 0.5 * Yspeed;
+
     // const Yspeed = 1;
-    // const midOffset = (screenHeight / parallaxTop) * 2;
-
-    // console.log(
-    //     "Parallax Top:",
-    //     parallaxTop,
-    //     "Parallax Height:",
-    //     parallaxHeight
-    // );
-
-    // console.log("Yspeed:", Yspeed);
-    // console.log("midOffset:", midOffset);
+    const Yoffset = 0 * (parallaxHeight / screenHeight);
+    // console.log(Yoffset);
+    // if (yoffset > 0 && yoffset < parallaxHeight - parallaxTop) {
+    //     console.log(smoothScrollY - parallaxTop);
+    // }
 
     const items = [
         {
@@ -155,7 +151,7 @@ export default function Home() {
             speed: 0.15 * Yspeed, // Custom parallax speed
             class: "lg:w-[400px]",
             xpos: 50,
-            ypos: 100,
+            ypos: 100 * Yoffset,
             link: "https://www.typing.com/student/typing-test/1-minute",
             tags: [],
         },
@@ -169,7 +165,7 @@ export default function Home() {
             class: "lg:w-[350px]",
             speed: 0.19 * Yspeed, // Custom parallax speed
             xpos: 200,
-            ypos: 100,
+            ypos: 100 * Yoffset,
             link: "https://www.facebook.com/profile.php?id=100086284085429",
             tags: [],
         },
@@ -183,7 +179,7 @@ export default function Home() {
             class: "lg:w-[500px] z-10",
             speed: 0.3 * Yspeed, // Custom parallax speed
             xpos: 50,
-            ypos: 100,
+            ypos: 100 * Yoffset,
             link: "",
             tags: [],
         },
@@ -197,7 +193,7 @@ export default function Home() {
             class: "lg:w-[500px] z-10",
             speed: 0.45 * Yspeed, // Custom parallax speed
             xpos: -50,
-            ypos: 500,
+            ypos: 200 * Yoffset,
             link: "https://www.facebook.com/ibotikaph",
             tags: ["HTML", "CSS", "JS", "Tailwind"],
         },
@@ -212,7 +208,7 @@ export default function Home() {
             class: "lg:w-[500px]",
             speed: 0.1 * Yspeed, // Custom parallax speed
             xpos: -200,
-            ypos: 100,
+            ypos: 100 * Yoffset,
             link: "https://github.com/mrnurios/FaceDecTemp",
             tags: ["Python", "OpenCV", "AI"],
         },
@@ -226,7 +222,7 @@ export default function Home() {
             speed: 0.26 * Yspeed, // Custom parallax speed
             class: "lg:w-[500px]",
             xpos: -60,
-            ypos: 100,
+            ypos: 100 * Yoffset,
             link: "https://excaliburjs.com/",
             tags: ["HTML", "ExcaliburJS", "JS"],
         },
@@ -333,30 +329,29 @@ export default function Home() {
                         ref={parallaxRefTop}
                         className="relative max-w-7xl mx-auto h-full w-full flex flex-col gap-10"
                     >
-                        <div className="sticky top-0 w-full h-60 md:h-72 flex flex-col gap-y-10 justify-center">
+                        <div className="sticky top-5 w-full h-60 md:h-72 flex flex-col gap-y-10 justify-center">
                             <div className="relative w-full flex flex-col items-center justify-center">
                                 <span
                                     className="absolute text-5xl md:text-8xl mx-auto font-black w-full text-nowrap text-outline opacity-35"
                                     style={{
                                         transform: `translateX(${
-                                            smoothScrollY * 15 * -0.1
+                                            (parallaxTop -
+                                                smoothScrollY -
+                                                screenWidth) *
+                                            2
                                         }px)`,
                                         willChange: "transform",
                                     }}
                                 >
-                                    SKILLS & EXPERIENCE SKILLS & EXPERIENCE
-                                    SKILLS & EXPERIENCE SKILLS & EXPERIENCE
-                                    SKILLS & EXPERIENCE SKILLS & EXPERIENCE
-                                    SKILLS & EXPERIENCE SKILLS & EXPERIENCE
-                                    SKILLS & EXPERIENCE SKILLS & EXPERIENCE
-                                    SKILLS & EXPERIENCE
+                                    1 SKILLS & EXPERIENCE 2 SKILLS & EXPERIENCE
+                                    3 SKILLS & EXPERIENCE 4 SKILLS & EXPERIENCE
                                 </span>
                                 <span className="relative text-amber-400 text-center text-5xl md:text-8xl mx-auto font-black">
                                     SKILLS & EXPERIENCE
                                 </span>
                             </div>
                         </div>
-                        <div className="md:sticky top-0 w-full p-5 mx-auto gap-5 md:gap-y-20 flex flex-col md:grid grid-flow-col grid-cols-3 grid-rows-2">
+                        <div className="md:sticky top-2/3 w-full p-5 mx-auto gap-5 md:gap-y-20 flex flex-col md:grid grid-flow-col grid-cols-3 grid-rows-2">
                             {items.map((item, index) => {
                                 const isHovered = hoverStates[index] || false;
 
@@ -387,8 +382,7 @@ export default function Home() {
                                                               translateY(${
                                                                   item.ypos +
                                                                   (smoothScrollY -
-                                                                      parallaxTop *
-                                                                          1.5) *
+                                                                      parallaxTop) *
                                                                       -item.speed
                                                               }px)
                                                               translateX(${
