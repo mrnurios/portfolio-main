@@ -133,7 +133,6 @@ export default function Home() {
 
     const Yspeed = 0.3 * (parallaxHeight / screenHeight);
 
-    // const Yspeed = 1;
     const Yoffset = 0 * (parallaxHeight / screenHeight);
     // console.log(Yoffset);
     // if (yoffset > 0 && yoffset < parallaxHeight - parallaxTop) {
@@ -329,22 +328,28 @@ export default function Home() {
                         ref={parallaxRefTop}
                         className="relative max-w-7xl mx-auto h-full w-full flex flex-col gap-10"
                     >
-                        <div className="sticky top-5 w-full h-60 md:h-72 flex flex-col gap-y-10 justify-center">
-                            <div className="relative w-full flex flex-col items-center justify-center">
+                        <div className="sticky top-5 w-full h-60 md:h-72 flex flex-col gap-y-10 items-center justify-center">
+                            <div className="relative w-full flex items-center">
                                 <span
-                                    className="absolute text-5xl md:text-8xl mx-auto font-black w-full text-nowrap text-outline opacity-35"
+                                    className="absolute text-nowrap text-6xl md:text-9xl font-black text-outline opacity-35"
                                     style={{
                                         transform: `translateX(${
                                             (parallaxTop -
                                                 smoothScrollY -
-                                                screenWidth) *
+                                                screenHeight) *
                                             2
                                         }px)`,
                                         willChange: "transform",
                                     }}
                                 >
-                                    1 SKILLS & EXPERIENCE 2 SKILLS & EXPERIENCE
-                                    3 SKILLS & EXPERIENCE 4 SKILLS & EXPERIENCE
+                                    SKILLS & EXPERIENCE SKILLS & EXPERIENCE
+                                    SKILLS & EXPERIENCE SKILLS & EXPERIENCE
+                                    SKILLS & EXPERIENCE SKILLS & EXPERIENCE
+                                    SKILLS & EXPERIENCE SKILLS & EXPERIENCE
+                                    SKILLS & EXPERIENCE SKILLS & EXPERIENCE
+                                    SKILLS & EXPERIENCE SKILLS & EXPERIENCE
+                                    SKILLS & EXPERIENCE SKILLS & EXPERIENCE
+                                    SKILLS & EXPERIENCE SKILLS & EXPERIENCE
                                 </span>
                                 <span className="relative text-amber-400 text-center text-5xl md:text-8xl mx-auto font-black">
                                     SKILLS & EXPERIENCE
@@ -446,9 +451,9 @@ export default function Home() {
                 <section className="relative h-screen">
                     <div className="relative max-w-7xl mx-auto h-full w-full flex flex-col gap-10">
                         <div className="md:absolute bottom-0 w-full h-screen flex flex-col gap-y-10 justify-center">
-                            <div className="relative w-full flex flex-col items-center">
+                            <div className="relative w-full flex items-center justify-center">
                                 <span
-                                    className="absolute top-0 text-5xl md:text-8xl mx-auto font-black w-full text-nowrap text-outline opacity-35"
+                                    className="absolute text-6xl md:text-9xl mx-auto font-black w-full text-nowrap text-outline opacity-35"
                                     style={{
                                         transform: `translateX(${
                                             smoothScrollY * 15 * -0.1
