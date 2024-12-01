@@ -129,10 +129,38 @@ export default function Home() {
         });
     };
 
-    const autoID = (item: any, index: number) => ({
-        ...item, // Spread the existing properties of the object
-        id: index, // Add the `id` property
-    });
+    // interface itemArray {
+    //     type: "video" | "img";
+    //     content: string;
+    //     alt: string;
+    //     title: string;
+    //     description: string;
+    //     class: string;
+    //     speed: number;
+    //     xpos: number;
+    //     ypos: number;
+    //     link: string;
+    //     tags: string[];
+    // }|{
+    //     level: number;
+    //     source: string;
+    //     alt: string;
+    // }
+
+    // interface stackArray {
+    //     level: number;
+    //     source: string;
+    //     alt: string;
+    // }
+
+    // const autoID = (item: unknown, index: number) => {
+    //     const typedItem = item as itemArray; // Type assertion
+
+    //     return {
+    //         ...typedItem,
+    //         id: index,
+    //     };
+    // };
 
     const Yspeed = 0.3 * (parallaxHeight / screenHeight);
     const Yoffset = 0 * (parallaxHeight / screenHeight);
@@ -218,7 +246,7 @@ export default function Home() {
             tags: ["HTML", "ExcaliburJS", "JS"],
         },
     ];
-    const itemsWithId = items.map((item, index) => autoID(item, index));
+    // const itemsWithId = items.map((item, index) => autoID(item, index));
 
     const stacks = [
         {
@@ -317,14 +345,12 @@ export default function Home() {
             alt: "Docs",
         },
     ];
-    const stacksWithId = stacks.map((stack, index) => autoID(stack, index));
+    // const stacksWithId = stacks.map((stack, index) => autoID(stack, index));
 
     return (
         <>
             <Hero />
             <main className="relative font-[family-name:var(--font-geist-sans)] w-full h-full flex flex-col text-white pt-20 md:gap-y-10 overflow-clip">
-                {/* <div className=""> */}
-                {/* </div> */}
                 <section
                     id="aboutme"
                     className="relative h-full w-full p-10 md:px-20 md:p-10"
@@ -452,10 +478,10 @@ export default function Home() {
                         </div>
                         <div className="flex flex-col w-full h-fit mx-auto px-14 md:px-40 gap-4">
                             <div className="flex flex-wrap gap-4 md:gap-10 justify-around">
-                                {stacksWithId.map((stack) => {
+                                {stacks.map((stack, index) => {
                                     return stack.level == 1 ? (
                                         <div
-                                            key={stack.id}
+                                            key={index}
                                             className="relative size-16 md:size-24"
                                         >
                                             <img
@@ -472,10 +498,10 @@ export default function Home() {
                                 <div className="relative overflow-clip w-full">
                                     {/* First set of images */}
                                     <div className="absolute inset-0 flex gap-4 md:gap-8 justify-evenly animate-marquee-right">
-                                        {stacksWithId.map((stack) => {
+                                        {stacks.map((stack, index) => {
                                             return stack.level == 0 ? (
                                                 <div
-                                                    key={stack.id}
+                                                    key={index}
                                                     className="relative size-10 md:size-16"
                                                 >
                                                     <img
@@ -490,10 +516,10 @@ export default function Home() {
 
                                     {/* Second set of images (duplicate) */}
                                     <div className="flex gap-4 md:gap-8 justify-evenly animate-marquee-infinite">
-                                        {stacksWithId.map((stack) => {
+                                        {stacks.map((stack, index) => {
                                             return stack.level == 0 ? (
                                                 <div
-                                                    key={stack.id}
+                                                    key={index}
                                                     className="relative size-10 md:size-16"
                                                 >
                                                     <img
@@ -509,12 +535,12 @@ export default function Home() {
                             </div>
                         </div>
                         <div className="md:translate-y-1/2 md:sticky top-2/3 w-full p-5 mx-auto gap-5 md:gap-y-20 flex flex-col md:grid grid-flow-col grid-cols-3 grid-rows-2">
-                            {itemsWithId.map((item, index) => {
+                            {items.map((item, index) => {
                                 const isHovered = hoverStates[index] || false;
 
                                 return (
                                     <a
-                                        key={item.id}
+                                        key={index}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         href={item.link}
