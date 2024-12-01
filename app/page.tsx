@@ -398,7 +398,7 @@ export default function Home() {
                             </div>
                             <a
                                 className="relative group size-fit rounded-lg px-4 py-3 bg-amber-400  transition-all duration-300 hover:scale-110"
-                                href="docs/bongcayao.pdf"
+                                href="docs/bongcayao_resume.pdf"
                                 download="bongcayao_resume.pdf"
                             >
                                 <span className="absolute transition-opacity duration-500 inset-0 size-full rounded-lg bg-gradient-to-r from-pink-500 to-indigo-500 opacity-0 group-hover:opacity-100"></span>
