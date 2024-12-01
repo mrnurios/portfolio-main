@@ -68,7 +68,6 @@ export default function Home() {
     const parallaxRefTop = useRef<HTMLDivElement | null>(null);
     const [parallaxHeight, setParallaxHeight] = useState(0);
     const [screenHeight, setscreenHeight] = useState(0);
-    const [screenWidth, setscreenWidth] = useState(0);
     const [parallaxTop, setParallaxTop] = useState(0);
     const smoothScrollY = useSmoothScroll();
     const [isMobile, setIsMobile] = useState(false);
@@ -86,7 +85,6 @@ export default function Home() {
 
             setIsMobile(window.innerWidth <= 768); // Set to true if screen width is less than or equal to 768px
             setscreenHeight(window.innerHeight);
-            setscreenWidth(window.innerWidth);
         };
 
         handleResize(); // Initial check
@@ -134,11 +132,6 @@ export default function Home() {
     const Yspeed = 0.3 * (parallaxHeight / screenHeight);
 
     const Yoffset = 0 * (parallaxHeight / screenHeight);
-    // console.log(Yoffset);
-    // if (yoffset > 0 && yoffset < parallaxHeight - parallaxTop) {
-    //     console.log(smoothScrollY - parallaxTop);
-    // }
-
     const items = [
         {
             id: 1,
