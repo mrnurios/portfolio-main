@@ -21,7 +21,7 @@ export default function Home() {
                 "graphic designer.",
                 "creative problem solver.",
             ],
-            typeSpeed: 35, // Typing speed in milliseconds
+            typeSpeed: 40, // Typing speed in milliseconds
             backSpeed: 30, // Backspacing speed
             backDelay: 1000, // Delay before backspacing
             startDelay: 500, // Delay before starting to type

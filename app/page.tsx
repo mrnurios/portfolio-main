@@ -129,12 +129,16 @@ export default function Home() {
         });
     };
 
-    const Yspeed = 0.3 * (parallaxHeight / screenHeight);
+    const autoID = (item: any, index: number) => ({
+        ...item, // Spread the existing properties of the object
+        id: index, // Add the `id` property
+    });
 
+    const Yspeed = 0.3 * (parallaxHeight / screenHeight);
     const Yoffset = 0 * (parallaxHeight / screenHeight);
+
     const items = [
         {
-            id: 1,
             type: "video",
             content: "/vids/type-speed.webm",
             alt: "typespeed",
@@ -148,7 +152,6 @@ export default function Home() {
             tags: [],
         },
         {
-            id: 2,
             type: "img",
             content: "/img/fullhouse.jpg",
             alt: "fullhouse",
@@ -162,7 +165,6 @@ export default function Home() {
             tags: [],
         },
         {
-            id: 3,
             type: "img",
             content: "/img/12.jpg",
             alt: "dotted studios",
@@ -176,7 +178,6 @@ export default function Home() {
             tags: [],
         },
         {
-            id: 4,
             type: "video",
             content: "/vids/ibotika.webm",
             alt: "ibotika",
@@ -190,7 +191,6 @@ export default function Home() {
             tags: ["HTML", "CSS", "JS", "Tailwind"],
         },
         {
-            id: 5,
             type: "video",
             content: "/vids/AI.webm",
             alt: "AI",
@@ -205,7 +205,6 @@ export default function Home() {
             tags: ["Python", "OpenCV", "AI"],
         },
         {
-            id: 6,
             type: "video",
             content: "/vids/excalibur.webm",
             alt: "game",
@@ -219,11 +218,113 @@ export default function Home() {
             tags: ["HTML", "ExcaliburJS", "JS"],
         },
     ];
+    const itemsWithId = items.map((item, index) => autoID(item, index));
+
+    const stacks = [
+        {
+            level: 1,
+            source: "/svg/html.svg",
+            alt: "HTML",
+        },
+        {
+            level: 1,
+            source: "/svg/css3.svg",
+            alt: "CSS",
+        },
+        {
+            level: 1,
+            source: "/svg/javascript.svg",
+            alt: "Javascript",
+        },
+        {
+            level: 1,
+            source: "/svg/tailwind.svg",
+            alt: "Tailwind",
+        },
+        {
+            level: 1,
+            source: "/svg/jquery.svg",
+            alt: "JQuery",
+        },
+        {
+            level: 1,
+            source: "/svg/laravel.svg",
+            alt: "Laravel",
+        },
+        {
+            level: 1,
+            source: "/svg/nextjs.svg",
+            alt: "Next",
+        },
+        {
+            level: 1,
+            source: "/svg/react.svg",
+            alt: "React",
+        },
+        {
+            level: 1,
+            source: "/svg/alpinejs.svg",
+            alt: "AlpineJS",
+        },
+        {
+            level: 1,
+            source: "/svg/python.svg",
+            alt: "Python",
+        },
+        {
+            level: 1,
+            source: "/svg/java.svg",
+            alt: "Java",
+        },
+        {
+            level: 0,
+            source: "/svg/arduino.svg",
+            alt: "Arduino",
+        },
+        {
+            level: 0,
+            source: "/svg/photoshop.svg",
+            alt: "Photoshop",
+        },
+        {
+            level: 0,
+            source: "/svg/premierepro.svg",
+            alt: "Premiere Pro",
+        },
+        {
+            level: 0,
+            source: "/svg/illustrator.svg",
+            alt: "Illustrator",
+        },
+        {
+            level: 0,
+            source: "/svg/excel.svg",
+            alt: "Excel",
+        },
+        {
+            level: 0,
+            source: "/svg/gsheets.svg",
+            alt: "Sheets",
+        },
+        {
+            level: 0,
+            source: "/svg/word.svg",
+            alt: "Word",
+        },
+        {
+            level: 0,
+            source: "/svg/gdocs.svg",
+            alt: "Docs",
+        },
+    ];
+    const stacksWithId = stacks.map((stack, index) => autoID(stack, index));
 
     return (
         <>
             <Hero />
             <main className="relative font-[family-name:var(--font-geist-sans)] w-full h-full flex flex-col text-white pt-20 md:gap-y-10 overflow-clip">
+                {/* <div className=""> */}
+                {/* </div> */}
                 <section
                     id="aboutme"
                     className="relative h-full w-full p-10 md:px-20 md:p-10"
@@ -349,16 +450,74 @@ export default function Home() {
                                 </span>
                             </div>
                         </div>
-                        <div className="md:sticky top-2/3 w-full p-5 mx-auto gap-5 md:gap-y-20 flex flex-col md:grid grid-flow-col grid-cols-3 grid-rows-2">
-                            {items.map((item, index) => {
+                        <div className="flex flex-col w-full h-fit mx-auto px-14 md:px-40 gap-4">
+                            <div className="flex flex-wrap gap-4 md:gap-10 justify-around">
+                                {stacksWithId.map((stack) => {
+                                    return stack.level == 1 ? (
+                                        <div
+                                            key={stack.id}
+                                            className="relative size-16 md:size-24"
+                                        >
+                                            <img
+                                                className="relative h-full mx-auto"
+                                                src={stack.source}
+                                                alt={stack.alt}
+                                            />
+                                        </div>
+                                    ) : null;
+                                })}
+                            </div>
+                            <span className="mx-auto">and many more...</span>
+                            <div className="h-10 md:h-16 w-full">
+                                <div className="relative overflow-clip w-full">
+                                    {/* First set of images */}
+                                    <div className="absolute inset-0 flex gap-4 md:gap-8 justify-evenly animate-marquee-right">
+                                        {stacksWithId.map((stack) => {
+                                            return stack.level == 0 ? (
+                                                <div
+                                                    key={stack.id}
+                                                    className="relative size-10 md:size-16"
+                                                >
+                                                    <img
+                                                        className="relative h-full mx-auto"
+                                                        src={stack.source}
+                                                        alt={stack.alt}
+                                                    />
+                                                </div>
+                                            ) : null;
+                                        })}
+                                    </div>
+
+                                    {/* Second set of images (duplicate) */}
+                                    <div className="flex gap-4 md:gap-8 justify-evenly animate-marquee-infinite">
+                                        {stacksWithId.map((stack) => {
+                                            return stack.level == 0 ? (
+                                                <div
+                                                    key={stack.id}
+                                                    className="relative size-10 md:size-16"
+                                                >
+                                                    <img
+                                                        className="relative h-full mx-auto"
+                                                        src={stack.source}
+                                                        alt={stack.alt}
+                                                    />
+                                                </div>
+                                            ) : null;
+                                        })}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="md:translate-y-1/2 md:sticky top-2/3 w-full p-5 mx-auto gap-5 md:gap-y-20 flex flex-col md:grid grid-flow-col grid-cols-3 grid-rows-2">
+                            {itemsWithId.map((item, index) => {
                                 const isHovered = hoverStates[index] || false;
 
                                 return (
                                     <a
+                                        key={item.id}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         href={item.link}
-                                        key={item.id}
                                         className={`${
                                             isMobile ? "" : "hover-child"
                                         } ${item.class}
@@ -425,14 +584,19 @@ export default function Home() {
                                         )}
                                         {item.tags.length > 0 && (
                                             <div className="text-xs flex gap-2">
-                                                {item.tags.map((tag, index) => (
-                                                    <span
-                                                        key={index}
-                                                        className="bg-neutral-800 rounded-full px-2 py-0.5 hover:bg-gradient-to-r from-pink-500 to-indigo-500"
-                                                    >
-                                                        {tag}
-                                                    </span>
-                                                ))}
+                                                {item.tags.map(
+                                                    (
+                                                        tag: string,
+                                                        index: number
+                                                    ) => (
+                                                        <span
+                                                            key={index}
+                                                            className="bg-neutral-800 rounded-full px-2 py-0.5 hover:bg-gradient-to-r from-pink-500 to-indigo-500"
+                                                        >
+                                                            {tag}
+                                                        </span>
+                                                    )
+                                                )}
                                             </div>
                                         )}
                                     </a>

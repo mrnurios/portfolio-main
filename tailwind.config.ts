@@ -14,6 +14,21 @@ export default {
                 background: "var(--background)",
                 foreground: "var(--foreground)",
             },
+            animation: {
+                marquee: "scroll-left 10s linear infinite",
+                "marquee-right": "scroll-right 10s linear infinite", //
+                "marquee-infinite": "scroll-infinite 10s linear infinite 0s", //
+            },
+            keyframes: {
+                "scroll-right": {
+                    "0%": { transform: "translateX(0%)" },
+                    "100%": { transform: "translateX(100%)" },
+                },
+                "scroll-infinite": {
+                    "100%": { transform: "translateX(0%)" },
+                    "0%": { transform: "translateX(-100%)" },
+                },
+            },
         },
     },
     plugins: [
