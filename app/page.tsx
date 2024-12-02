@@ -13,7 +13,7 @@ const useSmoothScroll = () => {
     useEffect(() => {
         const handleSmoothScroll = () => {
             currentScrollY.current +=
-                (window.scrollY - currentScrollY.current) * 0.1; // Easing factor
+                (window.scrollY - currentScrollY.current) * 0.05; // Easing factor
             setSmoothScrollY(currentScrollY.current);
             requestAnimationFrame(handleSmoothScroll);
         };
@@ -129,41 +129,8 @@ export default function Home() {
         });
     };
 
-    // interface itemArray {
-    //     type: "video" | "img";
-    //     content: string;
-    //     alt: string;
-    //     title: string;
-    //     description: string;
-    //     class: string;
-    //     speed: number;
-    //     xpos: number;
-    //     ypos: number;
-    //     link: string;
-    //     tags: string[];
-    // }|{
-    //     level: number;
-    //     source: string;
-    //     alt: string;
-    // }
-
-    // interface stackArray {
-    //     level: number;
-    //     source: string;
-    //     alt: string;
-    // }
-
-    // const autoID = (item: unknown, index: number) => {
-    //     const typedItem = item as itemArray; // Type assertion
-
-    //     return {
-    //         ...typedItem,
-    //         id: index,
-    //     };
-    // };
-
-    const Yspeed = 0.3 * (parallaxHeight / screenHeight);
-    const Yoffset = 0 * (parallaxHeight / screenHeight);
+    const Yspeed = 0.5 * (parallaxHeight / screenHeight);
+    const Yoffset = 1;
 
     const items = [
         {
@@ -201,7 +168,7 @@ export default function Home() {
             class: "lg:w-[500px] z-10",
             speed: 0.3 * Yspeed, // Custom parallax speed
             xpos: 50,
-            ypos: 100 * Yoffset,
+            ypos: 300 * Yoffset,
             link: "",
             tags: [],
         },
@@ -212,9 +179,9 @@ export default function Home() {
             title: "Landing Page",
             description: "Developed landing page for iBotika using Tailwind",
             class: "lg:w-[500px] z-10",
-            speed: 0.45 * Yspeed, // Custom parallax speed
+            speed: 0.35 * Yspeed, // Custom parallax speed
             xpos: -50,
-            ypos: 200 * Yoffset,
+            ypos: 600 * Yoffset,
             link: "https://www.facebook.com/ibotikaph",
             tags: ["HTML", "CSS", "JS", "Tailwind"],
         },
@@ -246,7 +213,6 @@ export default function Home() {
             tags: ["HTML", "ExcaliburJS", "JS"],
         },
     ];
-    // const itemsWithId = items.map((item, index) => autoID(item, index));
 
     const stacks = [
         {
@@ -345,12 +311,11 @@ export default function Home() {
             alt: "Docs",
         },
     ];
-    // const stacksWithId = stacks.map((stack, index) => autoID(stack, index));
 
     return (
         <>
             <Hero />
-            <main className="relative font-[family-name:var(--font-geist-sans)] w-full h-full flex flex-col text-white pt-20 md:gap-y-10 overflow-clip">
+            <main className="relative font-[family-name:var(--font-geist-sans)] w-full h-full flex flex-col pt-20 md:gap-y-10 overflow-clip">
                 <section
                     id="aboutme"
                     className="relative h-full w-full p-10 md:px-20 md:p-10"
@@ -381,7 +346,7 @@ export default function Home() {
                                     ut Me
                                 </h1>
                             </div>
-                            <p className="font-thin text-justify leading-8">
+                            <p className="font-light text-justify leading-8">
                                 My name is&nbsp;
                                 <span className="font-semibold">
                                     Clyb Abraham Bongcayao.&nbsp;
@@ -448,7 +413,7 @@ export default function Home() {
                         ref={parallaxRefTop}
                         className="relative max-w-7xl mx-auto h-full w-full flex flex-col gap-10"
                     >
-                        <div className="sticky top-5 w-full h-60 md:h-72 flex flex-col gap-y-10 items-center justify-center">
+                        <div className="sticky py-20 top-0 w-full h-fit flex flex-col gap-y-10 items-center justify-center">
                             <div className="relative w-full flex items-center">
                                 <span
                                     className="absolute text-nowrap text-6xl md:text-9xl font-black text-outline opacity-35"
@@ -475,67 +440,118 @@ export default function Home() {
                                     SKILLS & EXPERIENCE
                                 </span>
                             </div>
-                        </div>
-                        <div className="flex flex-col w-full h-fit mx-auto px-14 md:px-40 gap-4">
-                            <div className="flex flex-wrap gap-4 md:gap-10 justify-around">
-                                {stacks.map((stack, index) => {
-                                    return stack.level == 1 ? (
+                            <div
+                                className="flex flex-col w-full h-fit mx-auto px-14 md:px-40 gap-4"
+                                style={
+                                    smoothScrollY >
+                                    parallaxTop * (isMobile ? 1.08 : 1.25)
+                                        ? {
+                                              transform: ` translateX(${
+                                                  smoothScrollY -
+                                                  parallaxTop *
+                                                      (isMobile ? 1.08 : 1.25)
+                                              }px)`,
+                                              willChange: "transform",
+                                          }
+                                        : {}
+                                }
+                            >
+                                {/*skill stack*/}
+                                <div className="flex flex-wrap gap-4 md:gap-10 justify-around ">
+                                    {stacks.map((stack, index) => {
+                                        return stack.level == 1 ? (
+                                            <div
+                                                key={index}
+                                                className="relative size-16 md:size-24"
+                                            >
+                                                <img
+                                                    className="relative h-full mx-auto"
+                                                    src={stack.source}
+                                                    alt={stack.alt}
+                                                />
+                                            </div>
+                                        ) : null;
+                                    })}
+                                </div>
+                                <span className="mx-auto">
+                                    and many more...
+                                </span>
+                                <div
+                                    className="h-10 md:h-16 w-full"
+                                    style={{
+                                        maskImage: `linear-gradient(
+                                            to right,
+                                            rgba(0, 0, 0, 0),   
+                                            rgba(0, 0, 0, 1) 10%,  
+                                            rgba(0, 0, 0, 1) 90%,  
+                                            rgba(0, 0, 0, 0)
+                                        )`,
+                                    }}
+                                >
+                                    <div className="relative overflow-clip w-full h-fit">
+                                        {/* First set of images */}
                                         <div
-                                            key={index}
-                                            className="relative size-16 md:size-24"
+                                            className="grid animate-marquee-right"
+                                            style={{
+                                                gridTemplateColumns: `repeat(${
+                                                    stacks.filter(
+                                                        (stack) =>
+                                                            stack.level === 0
+                                                    ).length
+                                                }, minmax(0, 1fr))`,
+                                            }}
                                         >
-                                            <img
-                                                className="relative h-full mx-auto"
-                                                src={stack.source}
-                                                alt={stack.alt}
-                                            />
+                                            {stacks.map((stack, index) => {
+                                                return stack.level == 0 ? (
+                                                    <div
+                                                        key={index}
+                                                        className="relative size-8 md:size-16"
+                                                    >
+                                                        <img
+                                                            className="w-auto h-full mx-auto"
+                                                            src={stack.source}
+                                                            alt={stack.alt}
+                                                        />
+                                                    </div>
+                                                ) : null;
+                                            })}
                                         </div>
-                                    ) : null;
-                                })}
-                            </div>
-                            <span className="mx-auto">and many more...</span>
-                            <div className="h-10 md:h-16 w-full">
-                                <div className="relative overflow-clip w-full">
-                                    {/* First set of images */}
-                                    <div className="absolute inset-0 flex gap-4 md:gap-8 justify-evenly animate-marquee-right">
-                                        {stacks.map((stack, index) => {
-                                            return stack.level == 0 ? (
-                                                <div
-                                                    key={index}
-                                                    className="relative size-10 md:size-16"
-                                                >
-                                                    <img
-                                                        className="relative h-full mx-auto"
-                                                        src={stack.source}
-                                                        alt={stack.alt}
-                                                    />
-                                                </div>
-                                            ) : null;
-                                        })}
-                                    </div>
 
-                                    {/* Second set of images (duplicate) */}
-                                    <div className="flex gap-4 md:gap-8 justify-evenly animate-marquee-infinite">
-                                        {stacks.map((stack, index) => {
-                                            return stack.level == 0 ? (
-                                                <div
-                                                    key={index}
-                                                    className="relative size-10 md:size-16"
-                                                >
-                                                    <img
-                                                        className="relative h-full mx-auto"
-                                                        src={stack.source}
-                                                        alt={stack.alt}
-                                                    />
-                                                </div>
-                                            ) : null;
-                                        })}
+                                        {/* Second set of images (infinite effect) */}
+                                        <div
+                                            className="absolute inset-0 grid animate-marquee-infinite"
+                                            style={{
+                                                gridTemplateColumns: `repeat(${
+                                                    stacks.filter(
+                                                        (stack) =>
+                                                            stack.level === 0
+                                                    ).length
+                                                }, minmax(0, 1fr))`,
+                                            }}
+                                        >
+                                            {stacks.map((stack, index) => {
+                                                return stack.level == 0 ? (
+                                                    <div
+                                                        key={index}
+                                                        className="relative size-8 md:size-16"
+                                                    >
+                                                        <img
+                                                            className="w-auto h-full mx-auto"
+                                                            src={stack.source}
+                                                            alt={stack.alt}
+                                                        />
+                                                    </div>
+                                                ) : null;
+                                            })}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="md:translate-y-1/2 md:sticky top-2/3 w-full p-5 mx-auto gap-5 md:gap-y-20 flex flex-col md:grid grid-flow-col grid-cols-3 grid-rows-2">
+
+                        <div className="md:translate-y-2/3 md:sticky top-2/3 w-full p-5 mx-auto gap-5 md:gap-y-20 flex flex-col md:grid grid-flow-col grid-cols-3 grid-rows-2">
                             {items.map((item, index) => {
+                                // Projects
                                 const isHovered = hoverStates[index] || false;
 
                                 return (
@@ -547,8 +563,8 @@ export default function Home() {
                                         className={`${
                                             isMobile ? "" : "hover-child"
                                         } ${item.class}
-                                                relative h-fit rounded-lg overflow-clip p-2 space-y-3 cursor-alias
-                                                duration-200 transform hover:z-20
+                                                relative h-fit rounded-lg overflow-clip p-2 space-y-3 cursor-alias backdrop-blur-md shadow-md
+                                                duration-200 hover:z-20 bg-slate-500/50
                                                 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]
                                             `}
                                         onMouseEnter={() =>
@@ -583,7 +599,7 @@ export default function Home() {
                                             <span className="font-bold block">
                                                 {item.title}
                                             </span>
-                                            <span className="font-thin text-sm block">
+                                            <span className="font-light text-sm block">
                                                 {item.description}
                                             </span>
                                         </p>
@@ -617,7 +633,7 @@ export default function Home() {
                                                     ) => (
                                                         <span
                                                             key={index}
-                                                            className="bg-neutral-800 rounded-full px-2 py-0.5 hover:bg-gradient-to-r from-pink-500 to-indigo-500"
+                                                            className="dark:bg-neutral-800 rounded-full px-2 py-0.5 hover:bg-gradient-to-r from-pink-500 to-indigo-500"
                                                         >
                                                             {tag}
                                                         </span>

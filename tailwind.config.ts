@@ -17,9 +17,14 @@ export default {
             animation: {
                 marquee: "scroll-left 10s linear infinite",
                 "marquee-right": "scroll-right 10s linear infinite", //
-                "marquee-infinite": "scroll-infinite 10s linear infinite 0s", //
+                "marquee-left": "scroll-left 10s linear infinite", //
+                "marquee-infinite": "scroll-infinite 10s linear infinite", //
             },
             keyframes: {
+                "scroll-left": {
+                    "0%": { transform: "translateX(0%)" },
+                    "100%": { transform: "translateX(100%)" },
+                },
                 "scroll-right": {
                     "0%": { transform: "translateX(0%)" },
                     "100%": { transform: "translateX(100%)" },
@@ -44,8 +49,8 @@ export default {
             addUtilities({
                 ".text-outline": {
                     color: "transparent",
-                    "-webkit-text-stroke-width": "1px",
-                    "-webkit-text-stroke-color": "white",
+                    "-webkit-text-stroke-width": "1.5px",
+                    "-webkit-text-stroke-color": theme("colors.foreground"),
                 },
             });
         },
