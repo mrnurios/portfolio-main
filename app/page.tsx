@@ -377,7 +377,7 @@ export default function Home() {
                                     <span className="font-semibold">
                                         Email:&nbsp;
                                     </span>
-                                    cabongcayao@gmail.com
+                                    clybabraham05@gmail.com
                                 </h1>
 
                                 <h1 className="">
@@ -389,8 +389,8 @@ export default function Home() {
                             </div>
                             <a
                                 className="relative group size-fit rounded-lg px-4 py-3 bg-amber-400  transition-all duration-300 hover:scale-110"
-                                href="docs/bongcayao_resume.pdf"
-                                download="bongcayao_resume.pdf"
+                                href="docs/CLYB_ABRAHAM_BONGCAYAO.pdf"
+                                download="CLYB_ABRAHAM_BONGCAYAO.pdf"
                             >
                                 <span className="absolute transition-opacity duration-500 inset-0 size-full rounded-lg bg-gradient-to-r from-pink-500 to-indigo-500 opacity-0 group-hover:opacity-100"></span>
                                 <span
